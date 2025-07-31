@@ -3,7 +3,7 @@
 */
 
 import {
-  FC,
+  type FC,
   Suspense,
   useRef,
   useLayoutEffect,

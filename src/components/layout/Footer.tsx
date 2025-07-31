@@ -67,10 +67,10 @@ const Footer: React.FC = () => {
   return (
     <motion.footer
       className="footer"
-      variants={footerVariants}
+      variants={footerVariants as any}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, threshold: 0.1 }}
+      viewport={{ once: true }}
     >
       <div className="footer__container">
         {/* Main Footer Content */}
@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
               {quickLinks.map((link, index) => (
                 <motion.li
                   key={link.href}
-                  variants={linkVariants}
+                  variants={linkVariants as any}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
               {services.map((service, index) => (
                 <motion.li
                   key={service}
-                  variants={linkVariants}
+                  variants={linkVariants as any}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
@@ -180,7 +180,7 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="footer__social-link"
-                    variants={socialVariants}
+                    variants={socialVariants as any}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}

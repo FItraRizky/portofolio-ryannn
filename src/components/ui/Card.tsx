@@ -11,6 +11,7 @@ interface CardProps {
   rounded?: 'sm' | 'md' | 'lg' | 'xl';
   onClick?: () => void;
   gradient?: boolean;
+  variant?: string;
 }
 
 const Card: React.FC<CardProps> = ({

@@ -52,13 +52,13 @@ const ServicesSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.span className="services__subtitle" variants={fadeInUp}>
+          <motion.span className="services__subtitle" variants={fadeInUp as any}>
             What I Offer
           </motion.span>
-          <motion.h2 className="services__title" variants={fadeInUp}>
+          <motion.h2 className="services__title" variants={fadeInUp as any}>
             My Services
           </motion.h2>
-          <motion.p className="services__description" variants={fadeInUp}>
+          <motion.p className="services__description" variants={fadeInUp as any}>
             I provide comprehensive digital solutions to help bring your ideas to life.
             From concept to deployment, I ensure quality and excellence in every project.
           </motion.p>
@@ -70,11 +70,11 @@ const ServicesSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <motion.div
               key={service.id}
               className="services__item"
-              variants={staggerItem}
+              variants={staggerItem as any}
               onClick={() => handleServiceClick(service)}
             >
               <Card className="services__card" hover gradient>
@@ -154,7 +154,7 @@ const ServicesSection: React.FC = () => {
 
         <motion.div
           className="services__cta"
-          variants={fadeInUp}
+          variants={fadeInUp as any}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
@@ -234,7 +234,7 @@ const ServicesSection: React.FC = () => {
                 <div className="services__modal-process">
                   <h4>My Process</h4>
                   <div className="services__process-steps">
-                    {selectedService.process?.map((step, index) => (
+                    {selectedService.process?.map((step, index: number) => (
                       <div key={index} className="services__process-step">
                         <div className="services__step-number">{index + 1}</div>
                         <div className="services__step-content">
@@ -256,8 +256,8 @@ const ServicesSection: React.FC = () => {
                   <div className="services__pricing-details">
                     <div className="services__pricing-main">
                       <span className="services__pricing-label">
-                        {selectedService.pricing.type === 'fixed' ? 'Fixed Price' :
-                         selectedService.pricing.type === 'hourly' ? 'Hourly Rate' :
+                        {selectedService.pricing?.type === 'fixed' ? 'Fixed Price' :
+                         selectedService.pricing?.type === 'hourly' ? 'Hourly Rate' :
                          'Price Range'}
                       </span>
                       <span className="services__pricing-amount">
@@ -268,7 +268,7 @@ const ServicesSection: React.FC = () => {
                       <p>
                         <strong>Delivery Time:</strong> {selectedService.deliveryTime}
                       </p>
-                      {selectedService.pricing.notes && (
+                      {selectedService.pricing?.notes && (
                         <p>
                           <strong>Note:</strong> {selectedService.pricing.notes}
                         </p>
@@ -281,7 +281,7 @@ const ServicesSection: React.FC = () => {
                   <div className="services__modal-technologies">
                     <h4>Technologies Used</h4>
                     <div className="services__tech-grid">
-                      {selectedService.technologies.map((tech, index) => (
+                      {selectedService.technologies.map((tech: string, index: number) => (
                         <span key={index} className="services__tech-tag">
                           {tech}
                         </span>

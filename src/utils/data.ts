@@ -14,7 +14,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/fitrarizky/ecommerce-platform',
     category: 'fullstack',
     featured: true,
-    challenges: 'Mengintegrasikan sistem pembayaran yang aman dan mengelola state management yang kompleks',
+    challenges: ['Mengintegrasikan sistem pembayaran yang aman dan mengelola state management yang kompleks'],
     learnings: 'Mempelajari arsitektur microservices dan implementasi security best practices',
     role: 'Fullstack Developer'
   },
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/fitrarizky/task-management',
     category: 'fullstack',
     featured: true,
-    challenges: 'Implementasi real-time collaboration dan optimasi performa database',
+    challenges: ['Implementasi real-time collaboration dan optimasi performa database'],
     learnings: 'Menguasai WebSocket dan database optimization techniques',
     role: 'Lead Developer'
   },
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/fitrarizky/weather-dashboard',
     category: 'frontend',
     featured: false,
-    challenges: 'Visualisasi data yang kompleks dan responsive design',
+    challenges: ['Visualisasi data yang kompleks dan responsive design'],
     learnings: 'Menguasai data visualization dengan D3.js',
     role: 'Frontend Developer'
   }

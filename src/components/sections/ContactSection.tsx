@@ -175,13 +175,13 @@ const ContactSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.span className="contact__subtitle" variants={fadeInUp}>
+          <motion.span className="contact__subtitle" variants={fadeInUp as any}>
             Get In Touch
           </motion.span>
-          <motion.h2 className="contact__title" variants={fadeInUp}>
+          <motion.h2 className="contact__title" variants={fadeInUp as any}>
             Let's Work Together
           </motion.h2>
-          <motion.p className="contact__description" variants={fadeInUp}>
+          <motion.p className="contact__description" variants={fadeInUp as any}>
             Have a project in mind? I'd love to hear about it. Let's discuss how we can
             bring your ideas to life and create something amazing together.
           </motion.p>
@@ -190,7 +190,7 @@ const ContactSection: React.FC = () => {
         <div className="contact__content">
           <motion.div
             className="contact__info"
-            variants={fadeInLeft}
+            variants={fadeInLeft as any}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
@@ -206,7 +206,7 @@ const ContactSection: React.FC = () => {
                       key={index}
                       href={info.link}
                       className="contact__info-item"
-                      variants={staggerItem}
+                      variants={staggerItem as any}
                       whileHover={{ x: 5 }}
                       target={info.title === 'Website' ? '_blank' : undefined}
                       rel={info.title === 'Website' ? 'noopener noreferrer' : undefined}
@@ -239,7 +239,7 @@ const ContactSection: React.FC = () => {
                         whileTap={{ scale: 0.95 }}
                       >
                         <span className="contact__social-icon">{social.icon}</span>
-                        <span className="contact__social-name">{social.name}</span>
+                        <span className="contact__social-name">{social.platform}</span>
                       </motion.a>
                     ))}
                   </div>
@@ -262,7 +262,7 @@ const ContactSection: React.FC = () => {
 
           <motion.div
             className="contact__form-wrapper"
-            variants={fadeInRight}
+            variants={fadeInRight as any}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >

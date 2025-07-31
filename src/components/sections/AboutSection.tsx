@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { skills, experiences, education, personalInfo } from '../../utils/data';
-import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, staggerItem } from '../../utils/animations';
+import { skills, experiences, education } from '../../utils/data';
+import { fadeInUp, fadeInLeft, fadeInRight } from '../../utils/animations';
 import { Card, CardHeader, CardBody } from '../ui/Card';
 import './AboutSection.css';
 
@@ -93,13 +93,13 @@ const AboutSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <motion.span className="about__subtitle" variants={itemVariants}>
+          <motion.span className="about__subtitle" variants={itemVariants as any}>
             Tentang Saya
           </motion.span>
-          <motion.h2 className="about__title" variants={itemVariants}>
+          <motion.h2 className="about__title" variants={itemVariants as any}>
             Passion, Dedikasi & Inovasi
           </motion.h2>
-          <motion.p className="about__description" variants={itemVariants}>
+          <motion.p className="about__description" variants={itemVariants as any}>
             Seorang fullstack developer yang passionate dalam menciptakan solusi teknologi 
             yang memberikan dampak positif. Dengan pengalaman lebih dari 3 tahun, saya 
             terus belajar dan berkembang dalam dunia teknologi yang dinamis.
@@ -111,7 +111,7 @@ const AboutSection: React.FC = () => {
           {/* Personal Story */}
           <motion.div
             className="about__story"
-            variants={fadeInLeft}
+            variants={fadeInLeft as any}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
           >
@@ -170,7 +170,7 @@ const AboutSection: React.FC = () => {
           {/* Tabs Navigation */}
           <motion.div
             className="about__tabs"
-            variants={fadeInUp}
+            variants={fadeInUp as any}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
           >
@@ -209,7 +209,7 @@ const AboutSection: React.FC = () => {
                       <motion.div
                         key={category}
                         className="about__skill-category"
-                        variants={itemVariants}
+                        variants={itemVariants as any}
                       >
                         <h4 
                           className="about__skill-category-title"
@@ -218,11 +218,11 @@ const AboutSection: React.FC = () => {
                           {category}
                         </h4>
                         <div className="about__skill-list">
-                          {categorySkills.map((skill, index) => (
+                          {categorySkills.map((skill) => (
                             <motion.div
                               key={skill.name}
                               className="about__skill-item"
-                              variants={skillVariants}
+                              variants={skillVariants as any}
                               whileHover={{ scale: 1.05 }}
                               onHoverStart={() => setSelectedSkill(skill.name)}
                               onHoverEnd={() => setSelectedSkill(null)}
@@ -235,7 +235,7 @@ const AboutSection: React.FC = () => {
                                 <div className="about__skill-level">
                                   <span className="about__skill-percentage">{skill.level}%</span>
                                   <span className="about__skill-level-text">
-                                    {getSkillLevelText(skill.level)}
+                                    {getSkillLevelText(Number(skill.level))}
                                   </span>
                                 </div>
                               </div>
@@ -243,7 +243,7 @@ const AboutSection: React.FC = () => {
                               <div className="about__skill-progress">
                                 <motion.div
                                   className="about__skill-progress-bar"
-                                  variants={progressVariants}
+                                  variants={progressVariants as any}
                                   custom={skill.level}
                                   style={{ backgroundColor: getSkillColor(category) }}
                                 />
@@ -278,11 +278,11 @@ const AboutSection: React.FC = () => {
                   key="experience"
                 >
                   <div className="about__timeline">
-                    {experiences.map((exp, index) => (
+                    {experiences.map((exp) => (
                       <motion.div
                         key={exp.id}
                         className="about__timeline-item"
-                        variants={itemVariants}
+                        variants={itemVariants as any}
                       >
                         <div className="about__timeline-marker">
                           <div className="about__timeline-dot"></div>
@@ -306,14 +306,16 @@ const AboutSection: React.FC = () => {
                           <CardBody>
                             <p className="about__experience-description">{exp.description}</p>
                             
-                            <div className="about__experience-achievements">
-                              <h5>Key Achievements:</h5>
-                              <ul>
-                                {exp.achievements.map((achievement, i) => (
-                                  <li key={i}>{achievement}</li>
-                                ))}
-                              </ul>
-                            </div>
+                            {exp.achievements && exp.achievements.length > 0 && (
+                              <div className="about__experience-achievements">
+                                <h5>Key Achievements:</h5>
+                                <ul>
+                                  {exp.achievements.map((achievement: string, i: number) => (
+                                    <li key={i}>{achievement}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
                             
                             <div className="about__experience-technologies">
                               <h5>Technologies Used:</h5>
@@ -343,11 +345,11 @@ const AboutSection: React.FC = () => {
                   key="education"
                 >
                   <div className="about__education-grid">
-                    {education.map((edu, index) => (
+                    {education.map((edu) => (
                       <motion.div
                         key={edu.id}
                         className="about__education-item"
-                        variants={itemVariants}
+                        variants={itemVariants as any}
                       >
                         <Card className="about__education-card">
                           <CardHeader>
@@ -370,7 +372,7 @@ const AboutSection: React.FC = () => {
                               <div className="about__education-achievements">
                                 <h5>Achievements:</h5>
                                 <ul>
-                                  {edu.achievements.map((achievement, i) => (
+                                  {edu.achievements.map((achievement: string, i: number) => (
                                     <li key={i}>{achievement}</li>
                                   ))}
                                 </ul>
@@ -381,7 +383,7 @@ const AboutSection: React.FC = () => {
                               <div className="about__education-courses">
                                 <h5>Relevant Courses:</h5>
                                 <div className="about__course-tags">
-                                  {edu.relevantCourses.map((course) => (
+                                  {edu.relevantCourses.map((course: string) => (
                                     <span key={course} className="about__course-tag">
                                       {course}
                                     </span>
@@ -403,7 +405,7 @@ const AboutSection: React.FC = () => {
         {/* Personal Info & Fun Facts */}
         <motion.div
           className="about__personal"
-          variants={fadeInRight}
+          variants={fadeInRight as any}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >

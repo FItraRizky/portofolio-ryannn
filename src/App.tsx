@@ -26,7 +26,7 @@ import './App.css';
 
 const App: React.FC = () => {
   const { theme } = useTheme();
-  const { showScrollToTop, scrollToTop } = useScrollToTop();
+  const { showScrollTop, scrollToTop } = useScrollToTop();
 
   return (
     <div className="app" data-theme={theme}>
@@ -57,7 +57,7 @@ const App: React.FC = () => {
 
           {/* Scroll to Top Button */}
           <AnimatePresence>
-            {showScrollToTop && (
+            {showScrollTop && (
               <motion.div
                 className="app__scroll-to-top"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -72,7 +72,9 @@ const App: React.FC = () => {
                   onClick={scrollToTop}
                   className="scroll-to-top-btn"
                   aria-label="Scroll to top"
-                />
+                >
+                  
+                </Button>
               </motion.div>
             )}
           </AnimatePresence>

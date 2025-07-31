@@ -6,9 +6,9 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
-  useAnimation,
   useTransform,
-  PanInfo,
+  useAnimation,
+  type PanInfo,
 } from "framer-motion";
 import "./RollingGallery.css";
 

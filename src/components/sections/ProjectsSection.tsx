@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { projects } from '../../utils/data';
 import type { Project } from '../../types/data';
-import { fadeInUp, staggerContainer, staggerItem } from '../../utils/animations';
+import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { Card, CardBody } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
@@ -124,10 +124,10 @@ const ProjectsSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <motion.span className="projects__subtitle" variants={itemVariants}>
+          <motion.span className="projects__subtitle" variants={itemVariants as any}>
             Portfolio
           </motion.span>
-          <motion.h2 className="projects__title" variants={itemVariants}>
+          <motion.h2 className="projects__title" variants={itemVariants as any}>
             <ScrollVelocity
               texts={['Proyek & Karya Terbaik', 'Projects & Best Works', 'Portfolio Showcase']}
               velocity={100}
@@ -137,7 +137,7 @@ const ProjectsSection: React.FC = () => {
               numCopies={3}
             />
           </motion.h2>
-          <motion.p className="projects__description" variants={itemVariants}>
+          <motion.p className="projects__description" variants={itemVariants as any}>
             Koleksi proyek-proyek yang telah saya kerjakan, mulai dari aplikasi web 
             hingga mobile app. Setiap proyek mencerminkan dedikasi saya dalam 
             menciptakan solusi teknologi yang inovatif dan berkualitas.
@@ -151,13 +151,13 @@ const ProjectsSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <motion.button
               key={category}
               className={`projects__filter ${
                 selectedCategory === category ? 'projects__filter--active' : ''
               }`}
-              variants={filterVariants}
+              variants={filterVariants as any}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(category)}
@@ -182,11 +182,11 @@ const ProjectsSection: React.FC = () => {
           layout
         >
           <AnimatePresence mode="wait">
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project) => (
               <motion.div
                 key={`${selectedCategory}-${project.id}`}
                 className="projects__item"
-                variants={projectCardVariants}
+                variants={projectCardVariants as any}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -208,7 +208,7 @@ const ProjectsSection: React.FC = () => {
                           variant="primary"
                           size="sm"
                           onClick={(e) => {
-                            e.stopPropagation();
+                            e?.stopPropagation();
                             window.open(project.liveUrl, '_blank');
                           }}
                         >
@@ -219,7 +219,7 @@ const ProjectsSection: React.FC = () => {
                           variant="outline"
                           size="sm"
                           onClick={(e) => {
-                            e.stopPropagation();
+                            e?.stopPropagation();
                             window.open(project.githubUrl, '_blank');
                           }}
                         >
@@ -232,7 +232,7 @@ const ProjectsSection: React.FC = () => {
                     {/* Status Badge */}
                     <div 
                       className="projects__status-badge"
-                      style={{ backgroundColor: getStatusColor(project.status) }}
+                      style={{ backgroundColor: getStatusColor(project.status || '') }}
                     >
                       {project.status}
                     </div>
@@ -288,7 +288,7 @@ const ProjectsSection: React.FC = () => {
         {filteredProjects.length === 0 && (
           <motion.div
             className="projects__empty"
-            variants={fadeInUp}
+            variants={fadeInUp as any}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
           >
@@ -327,7 +327,7 @@ const ProjectsSection: React.FC = () => {
                 <div className="projects__modal-badges">
                   <span 
                     className="projects__modal-status"
-                    style={{ backgroundColor: getStatusColor(selectedProject.status) }}
+                    style={{ backgroundColor: getStatusColor(selectedProject.status || '') }}
                   >
                     {selectedProject.status}
                   </span>
@@ -352,7 +352,7 @@ const ProjectsSection: React.FC = () => {
                 <div className="projects__modal-features">
                   <h4>Fitur Utama</h4>
                   <ul>
-                    {selectedProject.features.map((feature, index) => (
+                    {selectedProject.features?.map((feature: string, index: number) => (
                       <li key={index}>{feature}</li>
                     ))}
                   </ul>
@@ -363,7 +363,7 @@ const ProjectsSection: React.FC = () => {
                 <div className="projects__modal-challenges">
                   <h4>Tantangan & Solusi</h4>
                   <ul>
-                    {selectedProject.challenges.map((challenge, index) => (
+                    {selectedProject.challenges?.map((challenge: string, index: number) => (
                       <li key={index}>{challenge}</li>
                     ))}
                   </ul>

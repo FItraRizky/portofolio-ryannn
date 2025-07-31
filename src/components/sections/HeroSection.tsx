@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { scrollToElement } from '../../utils/helpers';
-import { fadeInUp, fadeInDown, fadeInLeft, fadeInRight, staggerContainer, staggerItem } from '../../utils/animations';
+import { fadeInUp, fadeInRight, staggerContainer, staggerItem } from '../../utils/animations';
 import { Button } from '../ui/Button';
 import { personalInfo } from '../../utils/data';
-import { FiDownload, FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
 import ProfileCard from '../ProfileCard/ProfileCard';
 import TextType from '../../textanimations/TextType/TextType';
 import './HeroSection.css';
@@ -44,12 +44,12 @@ const HeroSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.div className="hero__text" variants={staggerItem}>
-            <motion.span className="hero__greeting" variants={fadeInUp}>
+          <motion.div className="hero__text" variants={staggerItem as any}>
+            <motion.span className="hero__greeting" variants={fadeInUp as any}>
               👋 Halo, saya
             </motion.span>
             
-            <motion.h1 className="hero__name" variants={fadeInUp}>
+            <motion.h1 className="hero__name" variants={fadeInUp as any}>
               <TextType
                 text={personalInfo.name}
                 typingSpeed={75}
@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
               />
             </motion.h1>
             
-            <motion.div className="hero__role-container" variants={fadeInUp}>
+            <motion.div className="hero__role-container" variants={fadeInUp as any}>
               <span className="hero__role-prefix">Saya seorang </span>
               <motion.span 
                 key={currentRole}
@@ -75,11 +75,11 @@ const HeroSection: React.FC = () => {
               </motion.span>
             </motion.div>
             
-            <motion.p className="hero__description" variants={fadeInUp}>
+            <motion.p className="hero__description" variants={fadeInUp as any}>
               {personalInfo.bio}
             </motion.p>
             
-            <motion.div className="hero__actions" variants={fadeInUp}>
+            <motion.div className="hero__actions" variants={fadeInUp as any}>
               <Button
                 variant="primary"
                 size="lg"
@@ -103,7 +103,7 @@ const HeroSection: React.FC = () => {
               </Button>
             </motion.div>
             
-            <motion.div className="hero__social" variants={fadeInUp}>
+            <motion.div className="hero__social" variants={fadeInUp as any}>
               <a href="https://github.com/fitrarizky" target="_blank" rel="noopener noreferrer" className="hero__social-link">
                 <FiGithub />
               </a>
@@ -116,7 +116,7 @@ const HeroSection: React.FC = () => {
             </motion.div>
           </motion.div>
           
-          <motion.div className="hero__profile-card" variants={fadeInRight}>
+          <motion.div className="hero__profile-card" variants={fadeInRight as any}>
             <ProfileCard
               avatarUrl={personalInfo.avatar}
               name={personalInfo.name}

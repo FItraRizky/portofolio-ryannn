@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
   return (
     <motion.nav
       className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}
-      variants={navbarVariants}
+      variants={navbarVariants as any}
       initial="hidden"
       animate="visible"
     >
@@ -171,7 +171,7 @@ const Navbar: React.FC = () => {
             />
             <motion.div
               className="navbar__mobile-menu"
-              variants={mobileMenuVariants}
+              variants={mobileMenuVariants as any}
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -197,7 +197,7 @@ const Navbar: React.FC = () => {
                       activeSection === item.href ? 'navbar__mobile-link--active' : ''
                     }`}
                     onClick={() => handleNavClick(item.href)}
-                    variants={menuItemVariants}
+                    variants={menuItemVariants as any}
                     initial="hidden"
                     animate="visible"
                     custom={index}

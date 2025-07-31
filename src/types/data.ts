@@ -10,10 +10,15 @@ export interface Project {
   githubUrl?: string;
   category: ProjectCategory;
   featured: boolean;
-  challenges?: string;
+  challenges?: string[];
   learnings?: string;
   role?: string;
   website?: string;
+  features?: string[];
+  status?: string;
+  year?: string;
+  duration?: string;
+  teamSize?: string;
 }
 
 export type ProjectCategory = 'frontend' | 'backend' | 'fullstack' | 'mobile' | 'devops' | 'opensource';
@@ -37,7 +42,10 @@ export interface Experience {
   endDate?: string;
   description: string[];
   technologies: string[];
+  type?: string;
+  achievements?: string[];
   current?: boolean;
+  duration?: string;
 }
 
 export interface Education {
@@ -48,6 +56,10 @@ export interface Education {
   startDate: string;
   endDate: string;
   description?: string;
+  relevantCourses?: string[];
+  achievements?: string[];
+  type?: string;
+  year?: string;
 }
 
 export interface Testimonial {
@@ -64,9 +76,28 @@ export interface Service {
   id: string;
   title: string;
   description: string;
+  longDescription?: string;
   features: string[];
   icon: string;
   price?: string;
+  pricing?: {
+    type: 'fixed' | 'hourly' | 'range';
+    amount?: number;
+    min?: number;
+    max?: number;
+    notes?: string;
+  };
+  deliveryTime?: string;
+  technologies?: string[];
+  process?: {
+    title: string;
+    description: string;
+    duration?: string;
+  }[];
+  clientSatisfaction?: number;
+  rating?: number;
+  category?: string;
+  projectsCompleted?: number;
 }
 
 export interface BlogPost {

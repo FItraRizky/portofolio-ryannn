@@ -3,7 +3,7 @@
 */
 
 import { useEffect, useState, useRef } from "react";
-import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion";
+import { motion, type PanInfo, useMotionValue, useTransform } from "framer-motion";
 // replace icons with your own if needed
 import {
   FiCircle,

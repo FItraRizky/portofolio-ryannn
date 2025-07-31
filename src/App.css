@@ -1,0 +1,162 @@
+/* App Root Styles */
+.app {
+  min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.app__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app__main {
+  flex: 1;
+  position: relative;
+}
+
+/* Scroll to Top Button */
+.app__scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.scroll-to-top-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+}
+
+.scroll-to-top-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(var(--primary-rgb), 0.4);
+}
+
+/* Global Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+/* Selection Styles */
+::selection {
+  background: rgba(var(--primary-rgb), 0.3);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: rgba(var(--primary-rgb), 0.3);
+  color: var(--text-primary);
+}
+
+/* Focus Styles */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .scroll-to-top-btn:hover {
+    transform: none;
+  }
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .scroll-to-top-btn {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app__scroll-to-top {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .scroll-to-top-btn {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app__scroll-to-top {
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+  
+  .scroll-to-top-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .scroll-to-top-btn {
+    background: #000;
+    color: #fff;
+    border: 3px solid #fff;
+  }
+  
+  [data-theme="dark"] .scroll-to-top-btn {
+    background: #fff;
+    color: #000;
+    border: 3px solid #000;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .app__scroll-to-top {
+    display: none;
+  }
+  
+  .app {
+    background: white;
+    color: black;
+  }
+}

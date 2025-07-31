@@ -280,12 +280,12 @@ export const socialLinks: SocialLink[] = [
   },
   {
     platform: 'Twitter',
-    url: 'https://twitter.com/fitrarizky',
+    url: 'https://x.com/RyanOktaaa',
     icon: '🐦'
   },
   {
     platform: 'Instagram',
-    url: 'https://instagram.com/fitrarizky',
+    url: 'https://www.instagram.com/fitrarizkky/',
     icon: '📸'
   }
 ];
@@ -294,9 +294,9 @@ export const socialLinks: SocialLink[] = [
 export const personalInfo = {
   name: 'Fitra Rizky Oktarian',
   title: 'Fullstack Developer',
-  email: 'fitra.rizky@email.com',
+  email: 'fitrarizky@email.com',
   phone: '+62 812-3456-7890',
-  location: 'Jakarta, Indonesia',
+  location: 'Lampung, Indonesia',
   website: 'https://fitrarizky.dev',
   bio: 'Passionate fullstack developer dengan 5+ tahun pengalaman dalam membangun solusi web inovatif. Saya percaya bahwa teknologi harus memberikan dampak positif dan memecahkan masalah nyata. Selalu eager untuk belajar teknologi baru dan berbagi pengetahuan dengan komunitas.',
   avatar: '/profile.jpg',

@@ -416,13 +416,13 @@ const AboutSection: React.FC = () => {
           <div className="about__scroll-stack-container">
             <ScrollStack
               className="about__fun-facts-stack"
-              itemDistance={120}
-              itemScale={0.05}
-              itemStackDistance={40}
-              stackPosition="30%"
-              scaleEndPosition="15%"
-              baseScale={0.9}
-              scaleDuration={0.6}
+              itemDistance={80}
+              itemScale={0.03}
+              itemStackDistance={25}
+              stackPosition="25%"
+              scaleEndPosition="10%"
+              baseScale={0.92}
+              scaleDuration={0.4}
             >
               <ScrollStackItem itemClassName="about__fact-card">
                 <div className="about__fact">

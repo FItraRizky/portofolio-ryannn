@@ -832,10 +832,16 @@
   height: 100vh;
   position: relative;
   margin: 2rem 0;
+  overflow: hidden;
 }
 
 .about__fun-facts-stack {
   height: 100%;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: scroll-position;
 }
 
 .about__fact-card {
@@ -846,7 +852,10 @@
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .about__fact-card:hover {

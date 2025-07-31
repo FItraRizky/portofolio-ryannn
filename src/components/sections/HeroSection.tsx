@@ -132,16 +132,7 @@ const HeroSection: React.FC = () => {
             />
           </motion.div>
         </motion.div>
-        
-        <motion.div 
-          className="hero__scroll-indicator"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-        >
-          <div className="hero__scroll-line"></div>
-          <span className="hero__scroll-text">Scroll untuk melihat lebih banyak</span>
-        </motion.div>
+
       </div>
     </section>
   );

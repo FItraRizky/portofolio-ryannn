@@ -815,7 +815,7 @@
   }
 }
 
-/* Scroll Stack Styles */
+/* Fun Facts Grid Styles */
 .about__fun-facts-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -828,20 +828,11 @@
   margin-bottom: 1rem;
 }
 
-.about__scroll-stack-container {
-  height: 100vh;
-  position: relative;
+.about__fun-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
   margin: 2rem 0;
-  overflow: hidden;
-}
-
-.about__fun-facts-stack {
-  height: 100%;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  contain: layout style paint;
-  transform: translateZ(0);
-  will-change: scroll-position;
 }
 
 .about__fact-card {
@@ -897,10 +888,11 @@
   font-size: 1rem;
 }
 
-/* Responsive adjustments for scroll stack */
+/* Responsive adjustments for fun facts grid */
 @media (max-width: 768px) {
-  .about__scroll-stack-container {
-    height: 80vh;
+  .about__fun-facts-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .about__fact-card {
@@ -940,7 +932,12 @@
     display: none;
   }
   
-  .about__scroll-stack-container {
-    height: auto;
+  .about__fun-facts-grid {
+    display: block;
+  }
+  
+  .about__fact-card {
+    margin-bottom: 1rem;
+    break-inside: avoid;
   }
 }

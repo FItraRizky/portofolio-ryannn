@@ -48,22 +48,22 @@ class ImageItem {
   private resize!: () => void;
 
   constructor(DOM_el: HTMLDivElement) {
-    this._DOM.el = DOM_el;
-    this._DOM.inner = this._DOM.el.querySelector(".content__img-inner");
+    this.DOM.el = DOM_el;
+    this.DOM.inner = this.DOM.el.querySelector(".content__img-inner");
     this.getRect();
     this.initEvents();
   }
 
   private initEvents() {
     this.resize = () => {
-      gsap.set(this._DOM.el, this.defaultStyle);
+      gsap.set(this.DOM.el, this.defaultStyle);
       this.getRect();
     };
     window.addEventListener("resize", this.resize);
   }
 
   private getRect() {
-    this.rect = this._DOM.el.getBoundingClientRect();
+    this.rect = this.DOM.el.getBoundingClientRect();
   }
 }
 
@@ -94,14 +94,14 @@ class ImageTrailVariant1 {
     this.cacheMousePos = { x: 0, y: 0 };
 
     const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = this._container.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
     container.addEventListener("mousemove", handlePointerMove);
     container.addEventListener("touchmove", handlePointerMove);
 
     const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = this._container.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
       requestAnimationFrame(() => this.render());
@@ -194,8 +194,6 @@ class ImageTrailVariant2 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this._container = container;
-    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -322,8 +320,6 @@ class ImageTrailVariant3 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this._container = container;
-    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -453,8 +449,6 @@ class ImageTrailVariant4 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this._container = container;
-    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -592,8 +586,6 @@ class ImageTrailVariant4 {
 }
 
 class ImageTrailVariant5 {
-  private _container: HTMLDivElement;
-  private _DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -607,8 +599,6 @@ class ImageTrailVariant5 {
   private lastAngle: number;
 
   constructor(container: HTMLDivElement) {
-    this._container = container;
-    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -737,8 +727,6 @@ class ImageTrailVariant5 {
 }
 
 class ImageTrailVariant6 {
-  private _container: HTMLDivElement;
-  private _DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -751,8 +739,6 @@ class ImageTrailVariant6 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this._container = container;
-    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -907,8 +893,6 @@ function getNewPosition(position: number, offset: number, arr: ImageItem[]) {
 }
 
 class ImageTrailVariant7 {
-  private _container: HTMLDivElement;
-  private _DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -923,8 +907,6 @@ class ImageTrailVariant7 {
   private visibleImagesTotal: number;
 
   constructor(container: HTMLDivElement) {
-    this._container = container;
-    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );

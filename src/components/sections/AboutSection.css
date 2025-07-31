@@ -815,6 +815,103 @@
   }
 }
 
+/* Scroll Stack Styles */
+.about__fun-facts-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.about__fun-facts-header h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.about__scroll-stack-container {
+  height: 100vh;
+  position: relative;
+  margin: 2rem 0;
+}
+
+.about__fun-facts-stack {
+  height: 100%;
+}
+
+.about__fact-card {
+  background: linear-gradient(135deg, 
+    rgba(var(--primary-rgb), 0.08) 0%, 
+    rgba(var(--secondary-rgb), 0.08) 100%);
+  border: 1px solid rgba(var(--primary-rgb), 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.about__fact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(var(--primary-rgb), 0.15);
+  border-color: rgba(var(--primary-rgb), 0.3);
+}
+
+.about__fact {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.about__fact-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.3);
+}
+
+.about__fact h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.about__fact p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Responsive adjustments for scroll stack */
+@media (max-width: 768px) {
+  .about__scroll-stack-container {
+    height: 80vh;
+  }
+  
+  .about__fact-card {
+    padding: 1.5rem;
+  }
+  
+  .about__fact {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .about__fact-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    margin: 0 auto;
+  }
+}
+
 /* Print Styles */
 @media print {
   .about {
@@ -832,5 +929,9 @@
 
   .about__skill-progress-bar::after {
     display: none;
+  }
+  
+  .about__scroll-stack-container {
+    height: auto;
   }
 }

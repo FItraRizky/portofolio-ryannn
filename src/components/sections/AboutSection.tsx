@@ -4,6 +4,7 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { skills, experiences, education } from '../../utils/data';
 import { fadeInUp, fadeInLeft, fadeInRight } from '../../utils/animations';
 import { Card, CardHeader, CardBody } from '../ui/Card';
+import ScrollStack, { ScrollStackItem } from '../ScrollStack/ScrollStack';
 import './AboutSection.css';
 
 const AboutSection: React.FC = () => {
@@ -409,12 +410,21 @@ const AboutSection: React.FC = () => {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <Card className="about__personal-card">
-            <CardHeader>
-              <h3>Fun Facts & Interests</h3>
-            </CardHeader>
-            <CardBody>
-              <div className="about__fun-facts">
+          <div className="about__fun-facts-header">
+            <h3>Fun Facts & Interests</h3>
+          </div>
+          <div className="about__scroll-stack-container">
+            <ScrollStack
+              className="about__fun-facts-stack"
+              itemDistance={120}
+              itemScale={0.05}
+              itemStackDistance={40}
+              stackPosition="30%"
+              scaleEndPosition="15%"
+              baseScale={0.9}
+              scaleDuration={0.6}
+            >
+              <ScrollStackItem itemClassName="about__fact-card">
                 <div className="about__fact">
                   <span className="about__fact-icon">☕</span>
                   <div>
@@ -422,7 +432,9 @@ const AboutSection: React.FC = () => {
                     <p>Mengonsumsi rata-rata 4 cangkir kopi per hari untuk fuel coding sessions</p>
                   </div>
                 </div>
-                
+              </ScrollStackItem>
+              
+              <ScrollStackItem itemClassName="about__fact-card">
                 <div className="about__fact">
                   <span className="about__fact-icon">🌱</span>
                   <div>
@@ -430,7 +442,9 @@ const AboutSection: React.FC = () => {
                     <p>Selalu mengikuti perkembangan teknologi terbaru dan mengambil online courses</p>
                   </div>
                 </div>
-                
+              </ScrollStackItem>
+              
+              <ScrollStackItem itemClassName="about__fact-card">
                 <div className="about__fact">
                   <span className="about__fact-icon">🎮</span>
                   <div>
@@ -438,7 +452,9 @@ const AboutSection: React.FC = () => {
                     <p>Bermain strategy games untuk melatih logical thinking dan problem solving</p>
                   </div>
                 </div>
-                
+              </ScrollStackItem>
+              
+              <ScrollStackItem itemClassName="about__fact-card">
                 <div className="about__fact">
                   <span className="about__fact-icon">📚</span>
                   <div>
@@ -446,7 +462,9 @@ const AboutSection: React.FC = () => {
                     <p>Menulis artikel teknis dan tutorial untuk berbagi knowledge dengan community</p>
                   </div>
                 </div>
-                
+              </ScrollStackItem>
+              
+              <ScrollStackItem itemClassName="about__fact-card">
                 <div className="about__fact">
                   <span className="about__fact-icon">🏃‍♂️</span>
                   <div>
@@ -454,9 +472,11 @@ const AboutSection: React.FC = () => {
                     <p>Rutin olahraga dan hiking untuk menjaga kesehatan fisik dan mental</p>
                   </div>
                 </div>
-              </div>
-            </CardBody>
-          </Card>
+              </ScrollStackItem>
+              
+              <div className="scroll-stack-end"></div>
+            </ScrollStack>
+          </div>
         </motion.div>
       </div>
     </section>

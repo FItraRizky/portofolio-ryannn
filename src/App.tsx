@@ -13,6 +13,7 @@ import HeroSection from './components/sections/HeroSection';
 import AboutSection from './components/sections/AboutSection';
 import ProjectsSection from './components/sections/ProjectsSection';
 import ServicesSection from './components/sections/ServicesSection';
+import TestimonialSection from './components/sections/TestimonialSection';
 import ContactSection from './components/sections/ContactSection';
 
 // UI Components
@@ -49,6 +50,7 @@ const App: React.FC = () => {
             <AboutSection />
             <ProjectsSection />
             <ServicesSection />
+            <TestimonialSection />
             <ContactSection />
           </main>
 

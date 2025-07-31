@@ -132,7 +132,7 @@ export const hoverLift = {
 // Page transitions
 export const pageTransition = {
   type: 'tween' as const,
-  ease: 'anticipate',
+  ease: 'anticipate' as any,
   duration: 0.5
 };
 

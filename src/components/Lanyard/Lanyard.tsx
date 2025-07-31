@@ -4,7 +4,7 @@
 
 /* eslint-disable react/no-unknown-property */
 "use client";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
@@ -31,6 +31,16 @@ import lanyard from "./lanyard.png";
 import "./Lanyard.css";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
+
+// Type declarations for extended components
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      meshLineGeometry: any;
+      meshLineMaterial: any;
+    }
+  }
+}
 
 interface LanyardProps {
   position?: [number, number, number];
@@ -289,16 +299,16 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
         </RigidBody>
       </group>
       <mesh ref={band}>
-        <meshLineGeometry />
-        <meshLineMaterial
-          color="white"
-          depthTest={false}
-          resolution={isSmall ? [1000, 2000] : [1000, 1000]}
-          useMap
-          map={texture}
-          repeat={[-4, 1]}
-          lineWidth={1}
-        />
+        {React.createElement('meshLineGeometry')}
+        {React.createElement('meshLineMaterial', {
+          color: "white",
+          depthTest: false,
+          resolution: isSmall ? [1000, 2000] : [1000, 1000],
+          useMap: true,
+          map: texture,
+          repeat: [-4, 1],
+          lineWidth: 1
+        })}
       </mesh>
     </>
   );

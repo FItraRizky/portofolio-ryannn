@@ -452,6 +452,7 @@ class W {
 }
 
 class Y extends MeshPhysicalMaterial {
+  defines: { [key: string]: string } = {};
   uniforms: { [key: string]: { value: any } } = {
     thicknessDistortion: { value: 0.1 },
     thicknessAmbient: { value: 0 },
@@ -656,17 +657,7 @@ function isInside(rect: DOMRect) {
   );
 }
 
-const { randFloat, randFloatSpread } = MathUtils;
-const F = new Vector3();
-const I = new Vector3();
-const O = new Vector3();
-const V = new Vector3();
-const B = new Vector3();
-const N = new Vector3();
-const _ = new Vector3();
-const j = new Vector3();
-const H = new Vector3();
-const T = new Vector3();
+// const { randFloat, randFloatSpread } = MathUtils;
 
 class Z extends InstancedMesh {
   config: typeof XConfig;

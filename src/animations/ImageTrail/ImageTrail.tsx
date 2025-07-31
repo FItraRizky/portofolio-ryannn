@@ -2,7 +2,7 @@
 	Installed from https://reactbits.dev/ts/default/
 */
 
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import "./ImageTrail.css";
 
@@ -48,28 +48,26 @@ class ImageItem {
   private resize!: () => void;
 
   constructor(DOM_el: HTMLDivElement) {
-    this.DOM.el = DOM_el;
-    this.DOM.inner = this.DOM.el.querySelector(".content__img-inner");
+    this._DOM.el = DOM_el;
+    this._DOM.inner = this._DOM.el.querySelector(".content__img-inner");
     this.getRect();
     this.initEvents();
   }
 
   private initEvents() {
     this.resize = () => {
-      gsap.set(this.DOM.el, this.defaultStyle);
+      gsap.set(this._DOM.el, this.defaultStyle);
       this.getRect();
     };
     window.addEventListener("resize", this.resize);
   }
 
   private getRect() {
-    this.rect = this.DOM.el.getBoundingClientRect();
+    this.rect = this._DOM.el.getBoundingClientRect();
   }
 }
 
 class ImageTrailVariant1 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -82,8 +80,6 @@ class ImageTrailVariant1 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -98,14 +94,14 @@ class ImageTrailVariant1 {
     this.cacheMousePos = { x: 0, y: 0 };
 
     const handlePointerMove = (ev: MouseEvent | TouchEvent) => {
-      const rect = this.container.getBoundingClientRect();
+      const rect = this._container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
     };
     container.addEventListener("mousemove", handlePointerMove);
     container.addEventListener("touchmove", handlePointerMove);
 
     const initRender = (ev: MouseEvent | TouchEvent) => {
-      const rect = this.container.getBoundingClientRect();
+      const rect = this._container.getBoundingClientRect();
       this.mousePos = getLocalPointerPos(ev, rect);
       this.cacheMousePos = { ...this.mousePos };
       requestAnimationFrame(() => this.render());
@@ -186,8 +182,6 @@ class ImageTrailVariant1 {
 }
 
 class ImageTrailVariant2 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -200,8 +194,8 @@ class ImageTrailVariant2 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
+    this._container = container;
+    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -316,8 +310,6 @@ class ImageTrailVariant2 {
 }
 
 class ImageTrailVariant3 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -330,8 +322,8 @@ class ImageTrailVariant3 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
+    this._container = container;
+    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -449,8 +441,6 @@ class ImageTrailVariant3 {
 }
 
 class ImageTrailVariant4 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -463,8 +453,8 @@ class ImageTrailVariant4 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
+    this._container = container;
+    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -602,8 +592,8 @@ class ImageTrailVariant4 {
 }
 
 class ImageTrailVariant5 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
+  private _container: HTMLDivElement;
+  private _DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -617,8 +607,8 @@ class ImageTrailVariant5 {
   private lastAngle: number;
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
+    this._container = container;
+    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -747,8 +737,8 @@ class ImageTrailVariant5 {
 }
 
 class ImageTrailVariant6 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
+  private _container: HTMLDivElement;
+  private _DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -761,8 +751,8 @@ class ImageTrailVariant6 {
   private cacheMousePos: { x: number; y: number };
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
+    this._container = container;
+    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -917,8 +907,8 @@ function getNewPosition(position: number, offset: number, arr: ImageItem[]) {
 }
 
 class ImageTrailVariant7 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
+  private _container: HTMLDivElement;
+  private _DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -933,8 +923,8 @@ class ImageTrailVariant7 {
   private visibleImagesTotal: number;
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
+    this._container = container;
+    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -1055,8 +1045,8 @@ class ImageTrailVariant7 {
 }
 
 class ImageTrailVariant8 {
-  private container: HTMLDivElement;
-  private DOM: { el: HTMLDivElement };
+  private _container: HTMLDivElement;
+  private _DOM: { el: HTMLDivElement };
   private images: ImageItem[];
   private imagesTotal: number;
   private imgPosition: number;
@@ -1073,8 +1063,8 @@ class ImageTrailVariant8 {
   private cachedZValue: number;
 
   constructor(container: HTMLDivElement) {
-    this.container = container;
-    this.DOM = { el: container };
+    this._container = container;
+    this._DOM = { el: container };
     this.images = [...container.querySelectorAll(".content__img")].map(
       (img) => new ImageItem(img as HTMLDivElement),
     );
@@ -1127,7 +1117,7 @@ class ImageTrailVariant8 {
   }
 
   private showNextImage() {
-    const rect = this.container.getBoundingClientRect();
+    const rect = this._container.getBoundingClientRect();
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
     const relX = this.mousePos.x - centerX;
@@ -1156,7 +1146,7 @@ class ImageTrailVariant8 {
         onStart: () => this.onImageActivated(),
         onComplete: () => this.onImageDeactivated(),
       })
-      .set(this.DOM.el, { perspective: 1000 }, 0)
+      .set(this._DOM.el, { perspective: 1000 }, 0)
       .fromTo(
         img.DOM.el,
         {
@@ -1235,7 +1225,7 @@ interface ImageTrailProps {
 export default function ImageTrail({
   items = [],
   variant = 1,
-}: ImageTrailProps): JSX.Element {
+}: ImageTrailProps): React.JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -2,7 +2,7 @@
 	Installed from https://reactbits.dev/ts/default/
 */
 
-import React, { useEffect, useRef, ReactNode } from "react";
+import React, { useEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
 import "./DecayCard.css";
 

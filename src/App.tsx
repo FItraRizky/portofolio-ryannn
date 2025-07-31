@@ -73,6 +73,7 @@ const App: React.FC = () => {
                   className="scroll-to-top-btn"
                   aria-label="Scroll to top"
                 >
+                  Top
                   
                 </Button>
               </motion.div>

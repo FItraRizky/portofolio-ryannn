@@ -2,7 +2,7 @@
 	Installed from https://reactbits.dev/ts/default/
 */
 
-import React, { useEffect, useRef, FC } from "react";
+import { useEffect, useRef, type FC } from "react";
 import { gsap } from "gsap";
 import "./GridMotion.css";
 

@@ -2,7 +2,7 @@
 	Installed from https://reactbits.dev/ts/default/
 */
 
-import { FC, useRef, useState, useEffect, MutableRefObject } from "react";
+import { useRef, useState, useEffect, type FC, type MutableRefObject } from "react";
 import { mat4, quat, vec2, vec3 } from "gl-matrix";
 import "./InfiniteMenu.css";
 
@@ -784,13 +784,22 @@ class InfiniteGridMenu {
   public smoothRotationVelocity = 0;
   public scaleFactor = 1.0;
 
+  private canvas: HTMLCanvasElement;
+  private items: MenuItem[];
+  private onActiveItemChange: ActiveItemCallback;
+  private onMovementChange: MovementChangeCallback;
+
   constructor(
-    private canvas: HTMLCanvasElement,
-    private items: MenuItem[],
-    private onActiveItemChange: ActiveItemCallback,
-    private onMovementChange: MovementChangeCallback,
+    canvas: HTMLCanvasElement,
+    items: MenuItem[],
+    onActiveItemChange: ActiveItemCallback,
+    onMovementChange: MovementChangeCallback,
     onInit?: InitCallback,
   ) {
+    this.canvas = canvas;
+    this.items = items;
+    this.onActiveItemChange = onActiveItemChange;
+    this.onMovementChange = onMovementChange;
     this.init(onInit);
   }
 

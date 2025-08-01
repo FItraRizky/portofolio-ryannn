@@ -1,147 +1,34 @@
 /* About Section Styles */
 .about {
   padding: 6rem 0;
-  background: transparent;
-  position: relative;
-  overflow: hidden;
-  min-height: 100vh;
-  /* Ensure proper stacking context */
-  isolation: isolate;
-}
-
-.about__background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-  /* Force hardware acceleration on mobile */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  will-change: transform;
-}
-
-.about__background #lights {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* Ensure canvas is properly sized on mobile */
-  min-height: 100vh;
-  min-width: 100vw;
-}
-
-/* Mobile-specific optimizations */
-@media (max-width: 768px) {
-  .about__background {
-    /* Use absolute positioning on mobile for better compatibility */
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    /* Reduce performance impact on mobile */
-    transform: none;
-    -webkit-transform: none;
-  }
-  
-  .about__background #lights {
-    /* Ensure proper sizing on mobile */
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    min-width: 100%;
-  }
-  
-  .about__background canvas {
-    /* Force canvas to fill container on mobile */
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
-  }
-}
-
-/* Fallback background for devices without WebGL support */
-.about__background-fallback {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.about__background-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background: linear-gradient(
     135deg,
-    #000000 0%,
-    #0a0a0a 25%,
-    #1a1a2e 50%,
-    #16213e 75%,
-    #0f3460 100%
+    var(--background-color) 0%,
+    rgba(var(--primary-rgb), 0.02) 50%,
+    var(--background-color) 100%
   );
-  animation: gradientShift 8s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
 }
 
-.about__background-pattern {
+.about::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(3, 179, 195, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(216, 86, 191, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(103, 80, 162, 0.05) 0%, transparent 50%);
-  animation: patternMove 12s linear infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% {
-    background: linear-gradient(
-      135deg,
-      #000000 0%,
-      #0a0a0a 25%,
-      #1a1a2e 50%,
-      #16213e 75%,
-      #0f3460 100%
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(var(--primary-rgb), 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(var(--secondary-rgb), 0.1) 0%,
+      transparent 50%
     );
-  }
-  50% {
-    background: linear-gradient(
-      135deg,
-      #0f3460 0%,
-      #16213e 25%,
-      #1a1a2e 50%,
-      #0a0a0a 75%,
-      #000000 100%
-    );
-  }
-}
-
-@keyframes patternMove {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-100px) rotate(360deg);
-  }
-}
-
-/* Reduce animation complexity on mobile for fallback */
-@media (max-width: 768px) {
-  .about__background-gradient {
-    animation-duration: 12s;
-  }
-  
-  .about__background-pattern {
-    animation-duration: 20s;
-    opacity: 0.5;
-  }
+  pointer-events: none;
 }
 
 .about__container {
@@ -149,7 +36,7 @@
   margin: 0 auto;
   padding: 0 2rem;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 /* Section Header */
@@ -175,7 +62,11 @@
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--text-primary), var(--primary-color));
+  background: linear-gradient(
+    135deg,
+    var(--text-primary),
+    var(--primary-color)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -202,9 +93,11 @@
 }
 
 .about__story-card {
-  background: linear-gradient(135deg, 
-    rgba(var(--primary-rgb), 0.05) 0%, 
-    rgba(var(--secondary-rgb), 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--primary-rgb), 0.05) 0%,
+    rgba(var(--secondary-rgb), 0.05) 100%
+  );
   border: 1px solid rgba(var(--primary-rgb), 0.1);
 }
 
@@ -295,7 +188,7 @@
 }
 
 .about__tab::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -357,7 +250,7 @@
 }
 
 .about__skill-category-title::before {
-  content: '';
+  content: "";
   width: 4px;
   height: 20px;
   background: currentColor;
@@ -442,13 +335,18 @@
 }
 
 .about__skill-progress-bar::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   animation: shimmer 2s infinite;
 }
 
@@ -480,13 +378,17 @@
 }
 
 .about__timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 15px;
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--secondary-color)
+  );
 }
 
 .about__timeline-item {
@@ -593,7 +495,7 @@
 }
 
 .about__experience-achievements li::before {
-  content: '✓';
+  content: "✓";
   position: absolute;
   left: 0;
   color: var(--primary-color);
@@ -694,7 +596,7 @@
 }
 
 .about__education-achievements li::before {
-  content: '🏆';
+  content: "🏆";
   position: absolute;
   left: 0;
 }
@@ -721,9 +623,11 @@
 }
 
 .about__personal-card {
-  background: linear-gradient(135deg, 
-    rgba(var(--secondary-rgb), 0.05) 0%, 
-    rgba(var(--accent-rgb), 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--secondary-rgb), 0.05) 0%,
+    rgba(var(--accent-rgb), 0.05) 100%
+  );
   border: 1px solid rgba(var(--secondary-rgb), 0.1);
 }
 
@@ -958,9 +862,11 @@
 }
 
 .about__fact-card {
-  background: linear-gradient(135deg, 
-    rgba(var(--primary-rgb), 0.08) 0%, 
-    rgba(var(--secondary-rgb), 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--primary-rgb), 0.08) 0%,
+    rgba(var(--secondary-rgb), 0.08) 100%
+  );
   border: 1px solid rgba(var(--primary-rgb), 0.15);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -992,7 +898,11 @@
   justify-content: center;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.3);
 }
@@ -1016,17 +926,17 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .about__fact-card {
     padding: 1.5rem;
   }
-  
+
   .about__fact {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
   }
-  
+
   .about__fact-icon {
     width: 50px;
     height: 50px;
@@ -1053,11 +963,11 @@
   .about__skill-progress-bar::after {
     display: none;
   }
-  
+
   .about__fun-facts-grid {
     display: block;
   }
-  
+
   .about__fact-card {
     margin-bottom: 1rem;
     break-inside: avoid;

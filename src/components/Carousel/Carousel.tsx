@@ -3,7 +3,12 @@
 */
 
 import { useEffect, useState, useRef } from "react";
-import { motion, type PanInfo, useMotionValue, useTransform } from "framer-motion";
+import {
+  motion,
+  type PanInfo,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 // replace icons with your own if needed
 import {
   FiCircle,
@@ -141,7 +146,7 @@ export default function Carousel({
 
   const handleDragEnd = (
     _: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo,
+    info: PanInfo
   ): void => {
     const offset = info.offset.x;
     const velocity = info.velocity.x;
@@ -186,7 +191,9 @@ export default function Carousel({
           width: itemWidth,
           gap: `${GAP}px`,
           perspective: 1000,
-          perspectiveOrigin: `${currentIndex * trackItemOffset + itemWidth / 2}px 50%`,
+          perspectiveOrigin: `${
+            currentIndex * trackItemOffset + itemWidth / 2
+          }px 50%`,
           x,
         }}
         onDragEnd={handleDragEnd}

@@ -1,20 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { scrollToElement } from '../../utils/helpers';
-import { fadeInUp, fadeInRight, staggerContainer, staggerItem } from '../../utils/animations';
-import { Button } from '../ui/Button';
-import { personalInfo } from '../../utils/data';
-import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
-import ProfileCard from '../ProfileCard/ProfileCard';
-import TextType from '../../textanimations/TextType/TextType';
-import Galaxy from '../../backgrounds/Galaxy/Galaxy';
-import './HeroSection.css';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
+import { scrollToElement } from "../../utils/helpers";
+import {
+  fadeInUp,
+  fadeInRight,
+  staggerContainer,
+  staggerItem,
+} from "../../utils/animations";
+import { Button } from "../ui/Button";
+import { personalInfo } from "../../utils/data";
+import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from "react-icons/fi";
+import ProfileCard from "../ProfileCard/ProfileCard";
+import TextType from "../../textanimations/TextType/TextType";
+import Galaxy from "../../backgrounds/Galaxy/Galaxy";
+import "./HeroSection.css";
 
 const HeroSection: React.FC = () => {
   const { ref, isInView } = useScrollAnimation();
   const [currentRole, setCurrentRole] = useState(0);
-  const roles = ['Fullstack Developer', 'React Specialist', 'Node.js Expert', 'UI/UX Enthusiast'];
+  const roles = [
+    "Fullstack Developer",
+    "React Specialist",
+    "Node.js Expert",
+    "UI/UX Enthusiast",
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,17 +34,17 @@ const HeroSection: React.FC = () => {
   }, []);
 
   const handleScrollToProjects = () => {
-    scrollToElement('projects');
+    scrollToElement("projects");
   };
 
   const handleScrollToContact = () => {
-    scrollToElement('contact');
+    scrollToElement("contact");
   };
 
   return (
     <section id="hero" className="hero" ref={ref}>
       <div className="hero__background">
-        <Galaxy 
+        <Galaxy
           focal={[0.5, 0.5]}
           rotation={[1.0, 0.0]}
           starSpeed={0.2}
@@ -52,7 +62,7 @@ const HeroSection: React.FC = () => {
           transparent={false}
         />
       </div>
-      
+
       <div className="hero__container">
         <motion.div
           className="hero__content"
@@ -64,7 +74,7 @@ const HeroSection: React.FC = () => {
             <motion.span className="hero__greeting" variants={fadeInUp as any}>
               👋 Halo, saya
             </motion.span>
-            
+
             <motion.h1 className="hero__name" variants={fadeInUp as any}>
               <TextType
                 text={personalInfo.name}
@@ -76,10 +86,13 @@ const HeroSection: React.FC = () => {
                 className="hero__name-text"
               />
             </motion.h1>
-            
-            <motion.div className="hero__role-container" variants={fadeInUp as any}>
+
+            <motion.div
+              className="hero__role-container"
+              variants={fadeInUp as any}
+            >
               <span className="hero__role-prefix">Saya seorang </span>
-              <motion.span 
+              <motion.span
                 key={currentRole}
                 className="hero__role"
                 initial={{ opacity: 0, y: 20 }}
@@ -90,11 +103,11 @@ const HeroSection: React.FC = () => {
                 {roles[currentRole]}
               </motion.span>
             </motion.div>
-            
+
             <motion.p className="hero__description" variants={fadeInUp as any}>
               {personalInfo.bio}
             </motion.p>
-            
+
             <motion.div className="hero__actions" variants={fadeInUp as any}>
               <Button
                 variant="primary"
@@ -106,7 +119,7 @@ const HeroSection: React.FC = () => {
               >
                 Lihat Portfolio
               </Button>
-              
+
               <Button
                 variant="outline"
                 size="lg"
@@ -118,21 +131,37 @@ const HeroSection: React.FC = () => {
                 Hubungi Saya
               </Button>
             </motion.div>
-            
+
             <motion.div className="hero__social" variants={fadeInUp as any}>
-              <a href="https://github.com/fitrarizky" target="_blank" rel="noopener noreferrer" className="hero__social-link">
+              <a
+                href="https://github.com/fitrarizky"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero__social-link"
+              >
                 <FiGithub />
               </a>
-              <a href="https://linkedin.com/in/fitrarizky" target="_blank" rel="noopener noreferrer" className="hero__social-link">
+              <a
+                href="https://linkedin.com/in/fitrarizky"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero__social-link"
+              >
                 <FiLinkedin />
               </a>
-              <a href={`mailto:${personalInfo.email}`} className="hero__social-link">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="hero__social-link"
+              >
                 <FiMail />
               </a>
             </motion.div>
           </motion.div>
-          
-          <motion.div className="hero__profile-card" variants={fadeInRight as any}>
+
+          <motion.div
+            className="hero__profile-card"
+            variants={fadeInRight as any}
+          >
             <ProfileCard
               avatarUrl={personalInfo.avatar}
               name={personalInfo.name}
@@ -148,7 +177,6 @@ const HeroSection: React.FC = () => {
             />
           </motion.div>
         </motion.div>
-
       </div>
     </section>
   );

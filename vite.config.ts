@@ -8,7 +8,7 @@ export default defineConfig({
   // Build optimizations
   build: {
     // Enable minification
-    minify: 'terser',
+    minify: 'esbuild',
     
     // Optimize chunk size
     chunkSizeWarningLimit: 1000,

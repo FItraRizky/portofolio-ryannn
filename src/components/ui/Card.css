@@ -156,7 +156,7 @@
   font-size: 3rem;
   color: var(--primary-color);
   opacity: 0.3;
-  font-family: serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .card--service {

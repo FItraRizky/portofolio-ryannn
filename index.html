@@ -4,10 +4,52 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/profile.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portofolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Fitra Rizky Oktarian - Fullstack Developer Portfolio</title>
+    <meta name="description" content="Passionate fullstack developer dengan 5+ tahun pengalaman dalam membangun solusi web inovatif. Spesialisasi React, Node.js, TypeScript, dan teknologi modern." />
+    <meta name="keywords" content="fullstack developer, web developer, React, Node.js, TypeScript, JavaScript, portfolio, Fitra Rizky" />
+    <meta name="author" content="Fitra Rizky Oktarian" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Fitra Rizky Oktarian - Fullstack Developer Portfolio" />
+    <meta property="og:description" content="Passionate fullstack developer dengan 5+ tahun pengalaman dalam membangun solusi web inovatif." />
+    <meta property="og:image" content="/profile.jpg" />
+    <meta property="og:url" content="https://fitrarizky.dev" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fitra Rizky Oktarian - Fullstack Developer Portfolio" />
+    <meta name="twitter:description" content="Passionate fullstack developer dengan 5+ tahun pengalaman dalam membangun solusi web inovatif." />
+    <meta name="twitter:image" content="/profile.jpg" />
+    
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/profile.jpg" as="image" type="image/jpeg" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration for Performance -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

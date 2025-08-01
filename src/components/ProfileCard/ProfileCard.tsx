@@ -4,6 +4,8 @@
 
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import "./ProfileCard.css";
+import LazyImage from "../common/LazyImage";
+import { useDebounce, useThrottle, usePreloadImages } from "../../hooks/usePerformance";
 
 interface ProfileCardProps {
   avatarUrl: string;
@@ -80,6 +82,18 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  // Preload images for better performance
+  usePreloadImages([avatarUrl, miniAvatarUrl || avatarUrl].filter(Boolean));
+
+  // Throttle pointer events for better performance
+  const throttledPointerMove = useThrottle((e: PointerEvent) => {
+    if (!enableTilt || !wrapRef.current || !cardRef.current) return;
+    const rect = wrapRef.current.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+    animationHandlers?.handlePointerMove(offsetX, offsetY);
+  }, 16); // ~60fps
 
   const animationHandlers = useMemo(() => {
     if (!enableTilt) return null;
@@ -327,28 +341,23 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           <div className="pc-shine" />
           <div className="pc-glare" />
           <div className="pc-content pc-avatar-content">
-            <img
+            <LazyImage
               className="avatar"
               src={avatarUrl}
               alt={`${name || "User"} avatar`}
-              loading="lazy"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = "none";
+              onError={() => {
+                console.warn('Avatar image failed to load');
               }}
             />
             {showUserInfo && (
               <div className="pc-user-info">
                 <div className="pc-user-details">
                   <div className="pc-mini-avatar">
-                    <img
+                    <LazyImage
                       src={miniAvatarUrl || avatarUrl}
                       alt={`${name || "User"} mini avatar`}
-                      loading="lazy"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.opacity = "0.5";
-                        target.src = avatarUrl;
+                      onError={() => {
+                        console.warn('Mini avatar image failed to load');
                       }}
                     />
                   </div>

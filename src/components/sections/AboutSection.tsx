@@ -4,6 +4,8 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { skills, experiences, education } from '../../utils/data';
 import { fadeInUp, fadeInLeft, fadeInRight } from '../../utils/animations';
 import { Card, CardHeader, CardBody } from '../ui/Card';
+import Hyperspeed from '../../backgrounds/Hyperspeed/Hyperspeed';
+import { hyperspeedPresets } from '../../backgrounds/Hyperspeed/HyperSpeedPresets';
 
 import './AboutSection.css';
 
@@ -86,6 +88,10 @@ const AboutSection: React.FC = () => {
 
   return (
     <section id="about" className="about" ref={ref}>
+      {/* Hyperspeed Background */}
+      <div className="about__background">
+        <Hyperspeed effectOptions={hyperspeedPresets.one} />
+      </div>
       <div className="about__container">
         {/* Section Header */}
         <motion.div

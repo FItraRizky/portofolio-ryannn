@@ -1,25 +1,28 @@
 /* About Section Styles */
 .about {
   padding: 6rem 0;
-  background: linear-gradient(135deg, 
-    var(--background-color) 0%, 
-    rgba(var(--primary-rgb), 0.02) 50%, 
-    var(--background-color) 100%);
+  background: transparent;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
 }
 
-.about::before {
-  content: '';
+.about__background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(var(--primary-rgb), 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(var(--secondary-rgb), 0.1) 0%, transparent 50%);
+  z-index: 0;
   pointer-events: none;
+}
+
+.about__background #lights {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .about__container {
@@ -27,7 +30,7 @@
   margin: 0 auto;
   padding: 0 2rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Section Header */

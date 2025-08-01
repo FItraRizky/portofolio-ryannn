@@ -13,6 +13,7 @@ import { personalInfo } from "../../utils/data";
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from "react-icons/fi";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import TextType from "../../textanimations/TextType/TextType";
+import ShinyText from "../../textanimations/ShinyText/ShinyText";
 import Galaxy from "../../backgrounds/Galaxy/Galaxy";
 import "./HeroSection.css";
 
@@ -76,13 +77,9 @@ const HeroSection: React.FC = () => {
             </motion.span>
 
             <motion.h1 className="hero__name" variants={fadeInUp as any}>
-              <TextType
+              <ShinyText
                 text={personalInfo.name}
-                typingSpeed={75}
-                showCursor={true}
-                cursorCharacter="|"
-                loop={false}
-                initialDelay={500}
+                speed={3}
                 className="hero__name-text"
               />
             </motion.h1>
@@ -100,12 +97,20 @@ const HeroSection: React.FC = () => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
               >
-                {roles[currentRole]}
+                <ShinyText
+                  text={roles[currentRole]}
+                  speed={4}
+                  className="hero__role-shiny"
+                />
               </motion.span>
             </motion.div>
 
             <motion.p className="hero__description" variants={fadeInUp as any}>
-              {personalInfo.bio}
+              <ShinyText
+                text={personalInfo.bio}
+                speed={5}
+                className="hero__description-shiny"
+              />
             </motion.p>
 
             <motion.div className="hero__actions" variants={fadeInUp as any}>

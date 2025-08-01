@@ -9,6 +9,52 @@
   background: transparent;
 }
 
+/* ShinyText Custom Styles */
+.hero__name-text {
+  color: #ffffff !important;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.1) 60%
+  ) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.hero__role-shiny {
+  color: #00c1ff !important;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 193, 255, 0.3) 40%,
+    rgba(0, 193, 255, 1) 50%,
+    rgba(0, 193, 255, 0.3) 60%
+  ) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+.hero__description-shiny {
+  color: #b5b5b5 !important;
+  background: linear-gradient(
+    120deg,
+    rgba(181, 181, 181, 0.5) 40%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(181, 181, 181, 0.5) 60%
+  ) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  display: inline-block;
+  width: 100%;
+  line-height: inherit;
+  text-align: inherit;
+  word-wrap: inherit;
+  hyphens: inherit;
+}
+
 /* Background Elements */
 .hero__background {
   position: absolute;
@@ -128,9 +174,12 @@
 .hero__description {
   font-size: 1.125rem;
   color: rgba(255, 255, 255, 0.7);
-  line-height: 1.6;
-  max-width: 500px;
+  line-height: 1.7;
+  max-width: 600px;
   margin: 0;
+  text-align: justify;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Actions */

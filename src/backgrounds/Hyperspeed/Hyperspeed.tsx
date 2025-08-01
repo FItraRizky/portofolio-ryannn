@@ -1037,7 +1037,6 @@ class App {
     // Additional mobile optimizations
     if (isMobile) {
       this.renderer.shadowMap.enabled = false;
-      this.renderer.physicallyCorrectLights = false;
     }
 
     this.composer = new EffectComposer(this.renderer);

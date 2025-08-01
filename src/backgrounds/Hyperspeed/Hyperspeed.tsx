@@ -1014,12 +1014,31 @@ class App {
     }
     this.container = container;
 
+    // Detect mobile device for performance optimization
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    
     this.renderer = new THREE.WebGLRenderer({
-      antialias: false,
+      antialias: !isMobile, // Disable antialiasing on mobile for better performance
       alpha: true,
+      powerPreference: isMobile ? "low-power" : "high-performance",
+      failIfMajorPerformanceCaveat: false,
+      preserveDrawingBuffer: false,
+      premultipliedAlpha: false,
+      stencil: false,
+      depth: true
     });
+    
     this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+    
+    // Limit pixel ratio on mobile devices to improve performance
+    const pixelRatio = isMobile ? Math.min(window.devicePixelRatio, 2) : window.devicePixelRatio;
+    this.renderer.setPixelRatio(pixelRatio);
+    
+    // Additional mobile optimizations
+    if (isMobile) {
+      this.renderer.shadowMap.enabled = false;
+      this.renderer.physicallyCorrectLights = false;
+    }
 
     this.composer = new EffectComposer(this.renderer);
     container.appendChild(this.renderer.domElement);

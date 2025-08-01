@@ -5,16 +5,22 @@
   position: relative;
   overflow: hidden;
   min-height: 100vh;
+  /* Ensure proper stacking context */
+  isolation: isolate;
 }
 
 .about__background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
   pointer-events: none;
+  /* Force hardware acceleration on mobile */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .about__background #lights {
@@ -23,6 +29,119 @@
   position: absolute;
   top: 0;
   left: 0;
+  /* Ensure canvas is properly sized on mobile */
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  .about__background {
+    /* Use absolute positioning on mobile for better compatibility */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Reduce performance impact on mobile */
+    transform: none;
+    -webkit-transform: none;
+  }
+  
+  .about__background #lights {
+    /* Ensure proper sizing on mobile */
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+  }
+  
+  .about__background canvas {
+    /* Force canvas to fill container on mobile */
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+}
+
+/* Fallback background for devices without WebGL support */
+.about__background-fallback {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.about__background-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #0a0a0a 25%,
+    #1a1a2e 50%,
+    #16213e 75%,
+    #0f3460 100%
+  );
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+.about__background-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(3, 179, 195, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(216, 86, 191, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(103, 80, 162, 0.05) 0%, transparent 50%);
+  animation: patternMove 12s linear infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background: linear-gradient(
+      135deg,
+      #000000 0%,
+      #0a0a0a 25%,
+      #1a1a2e 50%,
+      #16213e 75%,
+      #0f3460 100%
+    );
+  }
+  50% {
+    background: linear-gradient(
+      135deg,
+      #0f3460 0%,
+      #16213e 25%,
+      #1a1a2e 50%,
+      #0a0a0a 75%,
+      #000000 100%
+    );
+  }
+}
+
+@keyframes patternMove {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+  }
+}
+
+/* Reduce animation complexity on mobile for fallback */
+@media (max-width: 768px) {
+  .about__background-gradient {
+    animation-duration: 12s;
+  }
+  
+  .about__background-pattern {
+    animation-duration: 20s;
+    opacity: 0.5;
+  }
 }
 
 .about__container {

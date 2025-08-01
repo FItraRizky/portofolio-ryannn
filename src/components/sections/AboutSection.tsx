@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { skills, experiences, education } from '../../utils/data';
@@ -12,6 +12,22 @@ const AboutSection: React.FC = () => {
   const { ref, isInView } = useScrollAnimation();
   const [activeTab, setActiveTab] = useState<'skills' | 'experience' | 'education'>('skills');
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [supportsWebGL, setSupportsWebGL] = useState<boolean>(true);
+
+  useEffect(() => {
+    // Check WebGL support
+    const checkWebGLSupport = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        return !!gl;
+      } catch (e) {
+        return false;
+      }
+    };
+
+    setSupportsWebGL(checkWebGLSupport());
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -87,43 +103,50 @@ const AboutSection: React.FC = () => {
 
   return (
     <section id="about" className="about" ref={ref}>
-      {/* Hyperspeed Background */}
+      {/* Background - WebGL or Fallback */}
       <div className="about__background">
-        <Hyperspeed effectOptions={{
-          distortion: "turbulentDistortion",
-          length: 400,
-          roadWidth: 10,
-          islandWidth: 2,
-          lanesPerRoad: 3,
-          fov: 90,
-          fovSpeedUp: 150,
-          speedUp: 2,
-          carLightsFade: 0.4,
-          totalSideLightSticks: 20,
-          lightPairsPerRoadWay: 40,
-          shoulderLinesWidthPercentage: 0.05,
-          brokenLinesWidthPercentage: 0.1,
-          brokenLinesLengthPercentage: 0.5,
-          lightStickWidth: [0.12, 0.5] as [number, number],
-          lightStickHeight: [1.3, 1.7] as [number, number],
-          movingAwaySpeed: [60, 80] as [number, number],
-          movingCloserSpeed: [-120, -160] as [number, number],
-          carLightsLength: [12, 80] as [number, number],
-          carLightsRadius: [0.05, 0.14] as [number, number],
-          carWidthPercentage: [0.3, 0.5] as [number, number],
-          carShiftX: [-0.8, 0.8] as [number, number],
-          carFloorSeparation: [0, 5] as [number, number],
-          colors: {
-            roadColor: 0x080808,
-            islandColor: 0x0a0a0a,
-            background: 0x000000,
-            shoulderLines: 0x131318,
-            brokenLines: 0x131318,
-            leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-            rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-            sticks: 0x03b3c3,
-          }
-        }} />
+        {supportsWebGL ? (
+          <Hyperspeed effectOptions={{
+            distortion: "turbulentDistortion",
+            length: 400,
+            roadWidth: 10,
+            islandWidth: 2,
+            lanesPerRoad: 3,
+            fov: 90,
+            fovSpeedUp: 150,
+            speedUp: 2,
+            carLightsFade: 0.4,
+            totalSideLightSticks: 20,
+            lightPairsPerRoadWay: 40,
+            shoulderLinesWidthPercentage: 0.05,
+            brokenLinesWidthPercentage: 0.1,
+            brokenLinesLengthPercentage: 0.5,
+            lightStickWidth: [0.12, 0.5] as [number, number],
+            lightStickHeight: [1.3, 1.7] as [number, number],
+            movingAwaySpeed: [60, 80] as [number, number],
+            movingCloserSpeed: [-120, -160] as [number, number],
+            carLightsLength: [12, 80] as [number, number],
+            carLightsRadius: [0.05, 0.14] as [number, number],
+            carWidthPercentage: [0.3, 0.5] as [number, number],
+            carShiftX: [-0.8, 0.8] as [number, number],
+            carFloorSeparation: [0, 5] as [number, number],
+            colors: {
+              roadColor: 0x080808,
+              islandColor: 0x0a0a0a,
+              background: 0x000000,
+              shoulderLines: 0x131318,
+              brokenLines: 0x131318,
+              leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+              rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+              sticks: 0x03b3c3,
+            }
+          }} />
+        ) : (
+          <div className="about__background-fallback">
+            <div className="about__background-gradient"></div>
+            <div className="about__background-pattern"></div>
+          </div>
+        )}
       </div>
       <div className="about__container">
         {/* Section Header */}

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useAnimationFrame } from '../../hooks/usePerformance';
 
 interface SmoothTransitionProps {
   children: React.ReactNode;

@@ -12,7 +12,6 @@ import { Button } from "../ui/Button";
 import { personalInfo } from "../../utils/data";
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from "react-icons/fi";
 import ProfileCard from "../ProfileCard/ProfileCard";
-import TextType from "../../textanimations/TextType/TextType";
 import ShinyText from "../../textanimations/ShinyText/ShinyText";
 import Galaxy from "../../backgrounds/Galaxy/Galaxy";
 import "./HeroSection.css";

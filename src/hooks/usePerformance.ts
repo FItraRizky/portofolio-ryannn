@@ -5,7 +5,7 @@ export const useDebounce = <T extends (...args: any[]) => any>(
   callback: T,
   delay: number
 ): T => {
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<number | null>(null);
 
   const debouncedCallback = useCallback(
     (...args: Parameters<T>) => {
@@ -52,12 +52,12 @@ export const useThrottle = <T extends (...args: any[]) => any>(
 
 // Hook untuk mengoptimalkan animasi dengan requestAnimationFrame
 export const useAnimationFrame = (callback: () => void, deps: any[] = []) => {
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number | null>(null);
 
   const animate = useCallback(() => {
     callback();
     requestRef.current = requestAnimationFrame(animate);
-  }, deps);
+  }, [callback, ...deps]);
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
@@ -131,7 +131,7 @@ export const usePreloadImages = (imageUrls: string[]) => {
 
 // Hook untuk mengoptimalkan resize events
 export const useOptimizedResize = (callback: () => void) => {
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<number | null>(null);
 
   const handleResize = useCallback(() => {
     if (timeoutRef.current) {

@@ -5,7 +5,7 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import "./ProfileCard.css";
 import LazyImage from "../common/LazyImage";
-import { useDebounce, useThrottle, usePreloadImages } from "../../hooks/usePerformance";
+import { usePreloadImages } from "../../hooks/usePerformance";
 
 interface ProfileCardProps {
   avatarUrl: string;
@@ -85,15 +85,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
   // Preload images for better performance
   usePreloadImages([avatarUrl, miniAvatarUrl || avatarUrl].filter(Boolean));
-
-  // Throttle pointer events for better performance
-  const throttledPointerMove = useThrottle((e: PointerEvent) => {
-    if (!enableTilt || !wrapRef.current || !cardRef.current) return;
-    const rect = wrapRef.current.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left;
-    const offsetY = e.clientY - rect.top;
-    animationHandlers?.handlePointerMove(offsetX, offsetY);
-  }, 16); // ~60fps
 
   const animationHandlers = useMemo(() => {
     if (!enableTilt) return null;

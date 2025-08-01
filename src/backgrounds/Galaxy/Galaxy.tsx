@@ -298,7 +298,7 @@ export default function Galaxy({
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
       }
 
-      const lerpFactor = 0.05;
+      const lerpFactor = 0.1;
       smoothMousePos.current.x +=
         (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
       smoothMousePos.current.y +=

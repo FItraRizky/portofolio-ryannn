@@ -8,6 +8,7 @@ import { personalInfo } from '../../utils/data';
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
 import ProfileCard from '../ProfileCard/ProfileCard';
 import TextType from '../../textanimations/TextType/TextType';
+import Galaxy from '../../backgrounds/Galaxy/Galaxy';
 import './HeroSection.css';
 
 const HeroSection: React.FC = () => {
@@ -33,8 +34,23 @@ const HeroSection: React.FC = () => {
   return (
     <section id="hero" className="hero" ref={ref}>
       <div className="hero__background">
-        <div className="hero__gradient"></div>
-        <div className="hero__particles"></div>
+        <Galaxy 
+          focal={[0.5, 0.5]}
+          rotation={[1.0, 0.0]}
+          starSpeed={0.2}
+          density={1}
+          hueShift={140}
+          speed={2.0}
+          mouseInteraction={true}
+          glowIntensity={0.3}
+          saturation={0}
+          mouseRepulsion={true}
+          twinkleIntensity={0.3}
+          rotationSpeed={0.1}
+          repulsionStrength={4}
+          autoCenterRepulsion={0}
+          transparent={false}
+        />
       </div>
       
       <div className="hero__container">
